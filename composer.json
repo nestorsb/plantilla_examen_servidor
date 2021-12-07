@@ -1,0 +1,9 @@
+{
+    "name": "nestorsb/ingress",
+    "require": {},
+    "autoload":{
+        "psr-4":{
+            "App\\":"src/"
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "/": {
+        "controller": "LoginController",
+        "action": "showlogin"
+    },
+    "/register": {
+        "controller": "RegisterController",
+        "action": "showregister"
+    },
+    "/userprofile":{
+        "controller":"UserProfileController",
+        "action":"showprofile"
+    }
+}

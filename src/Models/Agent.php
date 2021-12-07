@@ -29,7 +29,7 @@ class Agent
 
         /** VALIDACION AGENTNAME */
         if (isset($query[0]["agent_name"])) {
-            if (!$query[0]["agent_name"] === $agentname) {
+            if (!($query[0]["agent_name"] === $agentname)) {
                 return false;
             }
         }

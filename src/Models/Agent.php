@@ -48,10 +48,12 @@ class Agent
     {
 
         if ($this->validateCredencials($agentname, $password)) {
+            
+            //GESTION DE VARIABLES DE SESION
             session_unset();
             session_destroy();
             session_start();
-            $_SESSION["agentname"] = $agentname;
+             $this->sessionManager->set("agentaname", $agentname);
             $_SESSION["login"] = true;
             echo header('Location:/userprofile');
         } else

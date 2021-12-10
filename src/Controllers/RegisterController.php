@@ -6,7 +6,7 @@ use App\Views\RegisterView;
 use App\Models\Agent;
 use App\Core\DataBase;
 
-class RegisterController
+class RegisterController 
 {
   public function showregister()
   {

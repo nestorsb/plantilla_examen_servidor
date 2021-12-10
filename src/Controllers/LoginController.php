@@ -2,11 +2,12 @@
 
 namespace App\Controllers;
 
+use App\Core\AbstractController;
 use App\Views\LoginView;
 use App\Models\Agent;
 use App\Core\DataBase;
 
-class LoginController
+class LoginController extends AbstractController
 {
   public function showlogin()
   {

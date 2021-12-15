@@ -10,5 +10,13 @@
     "/userprofile":{
         "controller":"UserProfileController",
         "action":"showprofile"
+    },
+    "/statsupload":{
+        "controller":"StatsUploadController",
+        "action":"upload"
+    },
+    "/ranking":{
+        "controller":"RankingController",
+        "action":"showranking"
     }
 }

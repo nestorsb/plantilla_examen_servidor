@@ -2,19 +2,20 @@
 
 namespace App\Controllers;
 
-use App\Views\RegisterView;
+use App\Core\AbstractController;
 use App\Models\Agent;
 use App\Core\DataBase;
 
-class RegisterController 
+class RegisterController extends AbstractController
 {
   public function showregister()
   {
     $agent = new Agent(new DataBase);
-    new RegisterView();
+
+    $this->render("register.html", []);
     
     if(isset($_POST["register"])){
-      $agent->register($_POST["username"],$_POST["password"],$_POST["faction"]); // por aqui lo he dejado, ir a agent a hacer la funcion
+      $agent->register($_POST["username"],$_POST["password"],$_POST["faction"]); 
     }
   }
 }

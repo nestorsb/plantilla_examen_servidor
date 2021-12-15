@@ -50,10 +50,9 @@ class Agent
         if ($this->validateCredencials($agentname, $password)) {
             
             //GESTION DE VARIABLES DE SESION
-            session_unset();
-            session_destroy();
-            session_start();
-             $this->sessionManager->set("agentaname", $agentname);
+            // session_unset();
+            // session_destroy();
+            // session_start();
             $_SESSION["login"] = true;
             echo header('Location:/userprofile');
         } else
@@ -114,6 +113,3 @@ class Agent
 
 
 
-//en el register, si te intentas registrar con un nombre que ya existe, te da este aviso, 
-//pero si te intentas registrar con un nombre que ya existe pero cambias a mayusculas o minusculas,
-//te da el error "Error al registrarse" 

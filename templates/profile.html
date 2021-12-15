@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Bienvenido, {{basicinfo.agent_name}}</h2>
+    <span>Facción: {{basicinfo.faction}}</span>
+    <br>
+    <span>Level: {{stats.Level}}</span>
+
+    <nav>
+    <br>
+    <a href="/statsupload">Subir estadisticas</a>
+    <br>
+    <a href="/ranking">Ranking</a>
+    <br>
+</nav>
+{% endblock %}

@@ -11,13 +11,17 @@ class UserProfileController extends AbstractController
     public function showprofile(){
         $agentname = $this->sessionManager->get("agentname");
         $stats = new Stats(new DataBase);
-        // var_dump($stats->getStatsOf($agentname));
-        // if (empty($stats->getStatsOf($agentname))){
-        //     echo "si";
-        // };
+
+        if($stats->getStatsOf($agentname)){
+            $agentStats = $stats->getStatsOf($agentname);
+        }else {
+            $agentStats = NULL;
+            echo "Aun no hay estadisticas de este agente";
+        }
+            
 
         $this->render("profile.html", [
-            "stats"=> empty($stats->getStatsOf($agentname)) ? $stats->getStatsOf($agentname) : NULL,
+            "stats"=> $agentStats,
             "basicinfo" => $stats->getBasicInfoOf($agentname)
         ]);
     }

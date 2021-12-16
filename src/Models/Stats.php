@@ -64,8 +64,17 @@ class Stats
         return intval($query[0]["id_span"]);
     }
 
+    public function getColumnNames($table){
+        $sql = "SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='ingress' AND `TABLE_NAME`='". $table ."'";
+        $query = $this->database->executeSQL($sql);
+        return $query;
+    }
 
-
+    public function getStatsRankingFilteredBy($parameter){
+        $sql = "SELECT agent.agent_name, stats.".$parameter." FROM stats INNER JOIN agent ON stats.id_agent = agent.id_agent GROUP BY agent.agent_name ORDER BY stats.".$parameter." DESC";
+        $query = $this->database->executeSQL($sql);
+        return $query;
+    }
 
     public function uploadStats($rawStats)
     {

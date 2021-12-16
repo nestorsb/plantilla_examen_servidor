@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Ranking</h2>
+
+    <form action="" method="post" name="filter" id="filter">
+        <select name="filter" id="filter">
+            {% for name in column_names %}
+            <option value="{{name.COLUMN_NAME}}">{{name.COLUMN_NAME}}</option>
+            {% endfor %}
+
+        </select>
+        <input type="submit" value="Filtrar">
+    </form>
+
+    <table class="default" border="1">
+
+        <tr>
+            <th>Agent Name</th>
+            <th>{{parameter|capitalize}}   </th>      
+        </tr>
+        {% for row in ranking %}
+        <tr>
+      
+          <td>{{row.agent_name}}</td>
+    
+          <td>{{row | last}}</td> 
+               
+        </tr>
+        {% endfor %}     
+      </table>
+    
+    <nav>
+        <a href="/userprofile">Volver</a>
+    </nav>
+
+{% endblock %}

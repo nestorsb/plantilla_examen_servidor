@@ -17,8 +17,9 @@ class Agent
         $this->database = $database;
     }
 
+    //Funciones auxiliares
 
-    public function validateCredencials($agentname, $password)
+    public function validateCredencials($agentname, $password) //Comprueba los datos introducidos para el inicio de sesion
     {
         /** IMPORTACION DE DATOS DEL AGENT DESDE BBDD */
         if (isset($agentname) && isset($password)) {
@@ -44,22 +45,19 @@ class Agent
             } else return false;
         } else return false;
     }
-    public function login($agentname, $password)
+
+    
+    public function avaliableNameCheck($agentname)
     {
-
-        if ($this->validateCredencials($agentname, $password)) {
-            
-            //GESTION DE VARIABLES DE SESION
-            // session_unset();
-            // session_destroy();
-            // session_start();
-            $_SESSION["login"] = true;
-            echo header('Location:/userprofile');
+        $sql = "SELECT agent_name FROM agent WHERE agent_name ='" . $agentname . "'";
+        $query = $this->database->executeSQL($sql);
+        if (strtolower($query[0]["agent_name"]) == strtolower($agentname)) {
+            return false;
         } else
-            echo "Usuario o Contraseña Incorrectos";
+        return true;
     }
-
-
+    
+    //Funciones sobre el tratamiento de las constraseñas
     public function getPasswordHash($password)
     {
         $password = password_hash($password, self::HASH, ['cost' => self::COST]);
@@ -74,15 +72,22 @@ class Agent
     {
         return $this->updatePassword($agentname, $this->getPasswordHash($password));
     }
-    public function avaliableNameCheck($agentname)
+
+    // FUNCIONES PRINCIPALES
+    
+        // LOGIN
+    public function login($agentname, $password)
     {
-        $sql = "SELECT agent_name FROM agent WHERE agent_name ='" . $agentname . "'";
-        $query = $this->database->executeSQL($sql);
-        if (strtolower($query[0]["agent_name"]) == strtolower($agentname)) {
-            return false;
+
+        if ($this->validateCredencials($agentname, $password)) {
+            
+            $_SESSION["login"] = true;
+            echo header('Location:/userprofile');
         } else
-            return true;
+            echo "Usuario o Contraseña Incorrectos";
     }
+
+        //REGISTRO
     public function register($agentname, $password, $faction)
     {
         if (isset($agentname) && isset($password) && isset($faction)) {

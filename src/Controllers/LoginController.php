@@ -14,7 +14,7 @@ class LoginController extends AbstractController
     $agent = new Agent(new DataBase);
 
     $this->render("login.html",[]);
-    
+
     if(isset($_POST["login"])){
       $agent->login($_POST["username"], $_POST["password"]);
       $this->sessionManager->set("agentname", $_POST["username"]);;

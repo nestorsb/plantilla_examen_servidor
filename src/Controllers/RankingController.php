@@ -13,13 +13,11 @@ class RankingController extends AbstractController
   {
     $stats = new Stats(new DataBase);
 
-    $column_names = $stats->getColumnNames("stats");
-    // var_dump($column_name[0]["COLUMN_NAME"]);
-
     if ($_POST["filter"]) {
       $parameter = $_POST["filter"];
     }else $parameter = "level";
-
+    
+    $column_names = $stats->getColumnNames("stats");
     $results = $stats->getStatsRankingFilteredBy($parameter);
 
 

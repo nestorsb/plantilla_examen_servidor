@@ -12,6 +12,7 @@ class Stats
         $this->database = $database;
     }
 
+    //Funciones de Insert a BBDD
     private function insertUploadInfo($datosBasicos, $agentid)
     {
         $sqlUpload = "INSERT INTO uploads (date, time, id_agent, time_span) VALUES('" . $datosBasicos[3] . "', '" . $datosBasicos[4] . "', '" . $agentid . "', '" . $this->getSpanId($datosBasicos[0]) . "')";
@@ -23,6 +24,8 @@ class Stats
         $sqlStats = "INSERT INTO stats (id_upload, id_agent, $cabecerasStatsSQL) VALUES (" . $this->getLastUploadId() . ", " . $agentid . ", " . $datosStatsSQL . ")";
         return $this->database->actionSQL($sqlStats);
     }
+
+    //Funciones auxiliares
 
     public function getBasicInfoOf($agentname)
     {
@@ -76,6 +79,8 @@ class Stats
         return $query;
     }
 
+    // Funcion Principal
+    
     public function uploadStats($rawStats)
     {
 
@@ -83,11 +88,25 @@ class Stats
 
 
         $stats_general = explode("\n", $rawStats);
+
+            // Filtro para evitar el envio de datos que pueden dar lugar a errores
+        if(!isset($stats_general[0]) || !isset($stats_general[1])){
+            echo " <br> Error al subir las estadisticas, es posible que los datos introducidos no sean correctos.";
+            return false;
+        }
+
+
         $stats_cabecera = explode("\t", $stats_general[0]);
         $stats_datos = explode("\t", $stats_general[1]);
 
                 //Elimina el ultimo elemento de las estadisticas si este esta vacio
         isset($stats_datos[count($stats_datos) - 1]) ? array_pop($stats_datos) : NULL  ;
+
+
+        if(count($stats_cabecera) !== count($stats_datos)+1 || count($stats_datos) < 48){
+            echo " <br> Error al subir las estadisticas, es posible que los datos introducidos no sean correctos.";
+            return false;
+        }
 
 
         $cabecerasBasicas = array_slice($stats_cabecera, 0, 5);
@@ -128,6 +147,33 @@ class Stats
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
     // public function insertUploadInfo($agentname, $timespan = 1)
     // {

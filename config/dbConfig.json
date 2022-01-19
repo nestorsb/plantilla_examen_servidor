@@ -2,5 +2,6 @@
     "server": "localhost",
     "user": "root",
     "password": "",
-    "dbname": "ingress"
+    "dbname": "ingress",
+    "driver": "mysql_pdo"
 }

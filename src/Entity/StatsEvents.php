@@ -1,67 +1,336 @@
 <?php
-
+/**
+ * Clase que modela la Tabla Stats_Events de la BB.DD. con Doctrine
+ */
 namespace App\Entity;
 
 use App\Repository\StatsEventsRepository;
-use BadFunctionCallException;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=StatsEventsRepository::class)
  * @ORM\Table(name="stats_events")
  */
+class StatsEvents{
 
-class StatsEvents
-{
     /**
-     * @ORM\id 
-     * @ORM\Column(type="integer", name="id_upload")
-     * @ORM\GeneratedValue */
-    private $statsEvents_id;
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(name="id_stats", type="integer")
+     */
+    private $id_stats;
 
-    /** @ORM\ManyToOne(targetEntity="Events", inversedBy="StatsEvents")*/
+    /**
+     * Muchas estadística para un evento, Lado de Muchos inversedBy, bidireccional
+     * @ORM\ManyToOne(targetEntity="Events", inversedBy="statsEvents")
+     * @ORM\JoinColumn(name="id_event", referencedColumnName="id_event")
+     */
     private $event;
 
-    /** @ORM\OneToOne(targetEntity="Uploads") 
-     * @ORM\JoinColumn(name="id_upload", referencedColumnName="id_upload")
-     * */
+    /**
+     * Una estadística para una upload, Lado inverso, bidireccional
+     * @ORM\OneToOne(targetEntity="Uploads", inversedBy="statEvent")
+     * @ORM\JoinColumn(name="id_upload", referencedColumnName="id_upload") 
+     */
     private $upload;
 
-    /** @ORM\ManyToOne(targetEntity="Agent", inversedBy="StatsEvents") */
+    /**
+     * Muchas estadística para una agente, Lado de Muchos inversedBy, bidireccional
+     * @ORM\ManyToOne(targetEntity="Agent", inversedBy="statsEvents")
+     * @ORM\JoinColumn(name="id_agent", referencedColumnName="id_agent")
+     */
     private $agent;
+
+    /**
+     * @ORM\Column(name="lifetime_ap", type="integer")
+     */
+    private $lifetimeAP;
+
+    /**
+     * @ORM\Column(name="unique_portals_visited", type="integer", nullable="true")
+     */
+    private $uniquePortalsVisited;
+
+    /**
+     * @ORM\Column(name="resonators_deployed", type="integer", nullable="true")
+     */
+    private $resonatorsDeployed;
+
+    /**
+     * @ORM\Column(name="links_created", type="integer", nullable="true")
+     */
+    private $linksCreated;
     
-    /** @ORM\Column(type="integer", name="lifetime_ap") */
-    private $lifetime_ap;
-    
-    /** @ORM\Column(type="integer", name="resonators_deployed") */
-    private $resonators_deployed;
-        
-    /** @ORM\Column(type="integer", name="unique_portals_visited") */
-    private $unique_portals_visited;
+    /**
+     * @ORM\Column(name="control_fields_created", type="integer", nullable="true")
+     */
+    private $controlFields;
 
-    /** @ORM\Column(type="integer", name="control_fields_created") */
-    private $control_fields_created;
+    /**
+     * @ORM\Column(name="xm_recharged", type="integer", nullable="true")
+     */
+    private $xmRecharged;
 
-    /** @ORM\Column(type="integer", name="xm_recharched") */
-    private $xm_recharched;
+    /**
+     * @ORM\Column(name="portals_captured", type="integer", nullable="true")
+     */
+    private $portalsCaptured;
 
-    /** @ORM\Column(type="integer", name="links_created") */
-    private $links_created;
-
-    /** @ORM\Column(type="integer", name="portals_captured") */
-    private $portals_captured;
-
-    /** @ORM\Column(type="integer", name="hacks") */
+    /**
+     * @ORM\Column(name="hacks", type="integer", nullable="true")
+     */
     private $hacks;
 
-    /** @ORM\Column(type="integer", name="resonators_destroyed") */
-    private $resonators_destroyed;
+    /**
+     * @ORM\Column(name="resonators_destroyed", type="integer", nullable="true")
+     */
+    private $resonatorsDestroyed;
 
-    public function __construct()
+    /**
+     * Get the value of id_stats
+     */ 
+    public function getId_stats()
     {
-        $this->event = new ArrayCollection();
+        return $this->id_stats;
     }
 
-}
+    /**
+     * Get muchas subidas para un evento, Lado de Muchos inversedBy
+     */ 
+    public function getEvent()
+    {
+        return $this->event;
+    }
 
+    /**
+     * Set muchas subidas para un evento, Lado de Muchos inversedBy
+     *
+     * @return  self
+     */ 
+    public function setEvent($event)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get una estadística para una upload, Lado inverso
+     */ 
+    public function getUpload()
+    {
+        return $this->upload;
+    }
+
+    /**
+     * Set una estadística para una upload, Lado inverso
+     *
+     * @return  self
+     */ 
+    public function setUpload($upload)
+    {
+        $this->upload = $upload;
+
+        return $this;
+    }
+
+    /**
+     * Get muchas estadística para una agente, Lado de Muchos inversedBy
+     */ 
+    public function getAgent()
+    {
+        return $this->agent;
+    }
+
+    /**
+     * Set muchas estadística para una agente, Lado de Muchos inversedBy
+     *
+     * @return  self
+     */ 
+    public function setAgent($agent)
+    {
+        $this->agent = $agent;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of lifetimeAP
+     */ 
+    public function getLifetimeAP()
+    {
+        return $this->lifetimeAP;
+    }
+
+    /**
+     * Set the value of lifetimeAP
+     *
+     * @return  self
+     */ 
+    public function setLifetimeAP($lifetimeAP)
+    {
+        $this->lifetimeAP = $lifetimeAP;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of uniquePortalsVisited
+     */ 
+    public function getUniquePortalsVisited()
+    {
+        return $this->uniquePortalsVisited;
+    }
+
+    /**
+     * Set the value of uniquePortalsVisited
+     *
+     * @return  self
+     */ 
+    public function setUniquePortalsVisited($uniquePortalsVisited)
+    {
+        $this->uniquePortalsVisited = $uniquePortalsVisited;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of resonatorsDeployed
+     */ 
+    public function getResonatorsDeployed()
+    {
+        return $this->resonatorsDeployed;
+    }
+
+    /**
+     * Set the value of resonatorsDeployed
+     *
+     * @return  self
+     */ 
+    public function setResonatorsDeployed($resonatorsDeployed)
+    {
+        $this->resonatorsDeployed = $resonatorsDeployed;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of linksCreated
+     */ 
+    public function getLinksCreated()
+    {
+        return $this->linksCreated;
+    }
+
+    /**
+     * Set the value of linksCreated
+     *
+     * @return  self
+     */ 
+    public function setLinksCreated($linksCreated)
+    {
+        $this->linksCreated = $linksCreated;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of controlFields
+     */ 
+    public function getControlFields()
+    {
+        return $this->controlFields;
+    }
+
+    /**
+     * Set the value of controlFields
+     *
+     * @return  self
+     */ 
+    public function setControlFields($controlFields)
+    {
+        $this->controlFields = $controlFields;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of xmRecharged
+     */ 
+    public function getXmRecharged()
+    {
+        return $this->xmRecharged;
+    }
+
+    /**
+     * Set the value of xmRecharged
+     *
+     * @return  self
+     */ 
+    public function setXmRecharged($xmRecharged)
+    {
+        $this->xmRecharged = $xmRecharged;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of portalsCaptured
+     */ 
+    public function getPortalsCaptured()
+    {
+        return $this->portalsCaptured;
+    }
+
+    /**
+     * Set the value of portalsCaptured
+     *
+     * @return  self
+     */ 
+    public function setPortalsCaptured($portalsCaptured)
+    {
+        $this->portalsCaptured = $portalsCaptured;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of hacks
+     */ 
+    public function getHacks()
+    {
+        return $this->hacks;
+    }
+
+    /**
+     * Set the value of hacks
+     *
+     * @return  self
+     */ 
+    public function setHacks($hacks)
+    {
+        $this->hacks = $hacks;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of resonatorsDestroyed
+     */ 
+    public function getResonatorsDestroyed()
+    {
+        return $this->resonatorsDestroyed;
+    }
+
+    /**
+     * Set the value of resonatorsDestroyed
+     *
+     * @return  self
+     */ 
+    public function setResonatorsDestroyed($resonatorsDestroyed)
+    {
+        $this->resonatorsDestroyed = $resonatorsDestroyed;
+
+        return $this;
+    }
+}

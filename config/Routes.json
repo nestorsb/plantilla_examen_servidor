@@ -5,7 +5,7 @@
     },
     "/register": {
         "controller": "RegisterController",
-        "action": "showregister"
+        "action": "register"
     },
     "/userprofile":{
         "controller":"UserProfileController",

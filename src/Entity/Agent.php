@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Clase que modela la Tabla Agent de la BB.DD. con Doctrine
+ */
 namespace App\Entity;
 
 use App\Repository\AgentRepository;
@@ -10,53 +12,65 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass=AgentRepository::class)
  * @ORM\Table(name="agent")
  */
-
-class Agent
-{
+class Agent{
     /**
-     * @ORM\id 
-     * @ORM\Column(type="integer", name="id_agent")
+     * @ORM\Id
      * @ORM\GeneratedValue
+     * @ORM\Column(name="id_agent", type="integer")
      */
-    private $agent_id;
+    private $id_agent;
 
-    /** @ORM\Column(type="string", name="agent_name") */
+    /**
+     * @ORM\Column(name="agent_name", type="string", unique="true", lenght="100")
+     */
     private $agent_name;
 
-    /** @ORM\Column(type="string", name="`password`") */
+    /**
+     * @ORM\Column(name="`password`", type="string", lenght="64")
+     */
     private $password;
 
-    /** @ORM\Column(type="string", name="faction") */
+    /**
+     * @ORM\Column(name="faction", type="string", lenght="100")
+     */
     private $faction;
 
     /**
-     * @ORM\OneToMany(targetEntity="Upload", mappedBy="agent")
+     * Un agente para muchos Uploads, Lado de Uno, bidireccional
+     * @ORM\OneToMany(targetEntity="Uploads", mappedBy="agent")
      */
     private $uploads;
 
     /**
-     * @ORM\OneToMany(targetEntity="Stats", mappedBy="stats_id")
-     */    
+     * Un agente para muchas Estadísticas, Lado de Uno, bidireccional
+     * @ORM\OneToMany(targetEntity="Stats", mappedBy="agent")
+     */
     private $stats;
 
     /**
+     * Un agente para muchas Estadísticas de Eventos, Lado de Uno, bidireccional
      * @ORM\OneToMany(targetEntity="StatsEvents", mappedBy="agent")
      */
     private $statsEvents;
 
-
-    public function __construct()
-    {
+    /**
+     * Mediante el constructor se inicializan los ArrayCollection de las asociaciones de 
+     * uno a muchos que tenemos con la tabla agent
+     */
+    public function __construct(){
+        //Inicializamos las variables asociadas como Arraycollection para poder
+        // obtener todos los objetos asociados
         $this->uploads = new ArrayCollection();
         $this->stats = new ArrayCollection();
         $this->statsEvents = new ArrayCollection();
     }
+
     /**
-     * Get the value of agent_id
+     * Get the value of id_agent
      */ 
-    public function getAgent_id()
+    public function getId_agent()
     {
-        return $this->agent_id;
+        return $this->id_agent;
     }
 
     /**
@@ -120,7 +134,7 @@ class Agent
     }
 
     /**
-     * Get the value of uploads
+     * Get de un agente para muchos Uploads, Lado de one mappedBy
      */ 
     public function getUploads()
     {
@@ -128,39 +142,23 @@ class Agent
     }
 
     /**
-     * Set the value of uploads
+     * Set de un agente para muchos Uploads, Lado de one mappedBy
+     * donde también hemos realizado la insercción en la tabla Uploads el objeto Agente
      *
      * @return  self
      */ 
-    public function setUploads($uploads)
+    public function setUploads(Uploads $uploads)
     {
-        $this->uploads = $uploads;
+        if(!$this->uploads->contains($uploads)){
+            $this->uploads[] = $uploads;
+            $uploads->setAgent($this);
+        }
 
         return $this;
     }
 
     /**
-     * Get the value of stats
-     */ 
-    public function getStats()
-    {
-        return $this->stats;
-    }
-
-    /**
-     * Set the value of stats
-     *
-     * @return  self
-     */ 
-    public function setStats($stats)
-    {
-        $this->stats = $stats;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of statsEvents
+     * Get de un agente para muchas Estadísticas de Eventos, Lado de one Mapped
      */ 
     public function getStatsEvents()
     {
@@ -168,14 +166,42 @@ class Agent
     }
 
     /**
-     * Set the value of statsEvents
+     * Set de un agente para muchas Estadísticas de Eventos, Lado de one Mapped
+     * donde también hemos realizado la insercción en la tabla StatsEvents el objeto Agente
      *
      * @return  self
      */ 
-    public function setStatsEvents($statsEvents)
+    public function setStatsEvents(StatsEvents $statsEvents)
     {
-        $this->statsEvents = $statsEvents;
+        if(!$this->statsEvents->contains($statsEvents)){
+            $this->statsEvents[] = $statsEvents;
+            $statsEvents->setAgent($this);
+        }
 
         return $this;
     }
+
+    /**
+     * Get un agente para muchas Estadísticas, Lado de one Mapped
+     */ 
+    public function getStats()
+    {
+        return $this->stats;
     }
+
+    /**
+     * Set un agente para muchas Estadísticas, Lado de one Mapped
+     * donde también hemos realizado la insercción en la tabla Stats el objeto Agente
+     *
+     * @return  self
+     */ 
+    public function setStats(Stats $stats)
+    {
+        if(!$this->stats->contains($stats)){
+            $this->stats[] = $stats;
+            $stats->setAgent($this);
+        }
+
+        return $this;
+    }
+}

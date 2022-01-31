@@ -3,5 +3,5 @@
     "user": "root",
     "password": "",
     "dbname": "ingress_mvc_doctrine",
-    "driver": "mysql_pdo"
+    "driver": "pdo_mysql"
 }

@@ -21,7 +21,6 @@ class LoginController extends AbstractController
       if($agentRepository->doLogin($_POST["username"], $_POST["password"])){
         $this->sessionManager->set("agentname", $_POST["username"]);
         header('Location: /userprofile');
-        echo "nice";
       }else {
         echo "Usuario o contraseña incorrectos";
       }

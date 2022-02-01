@@ -22,7 +22,7 @@ class stats{
 
     /**
      * Una subida para cada estadística, bidireccional
-     * @ORM\OneToOne(targetEntity="Uploads" inversedBy="stat")
+     * @ORM\OneToOne(targetEntity="Uploads", inversedBy="stat")
      * @ORM\JoinColumn(name="id_upload", referencedColumnName="id_upload")
      */
     private $id_upload;

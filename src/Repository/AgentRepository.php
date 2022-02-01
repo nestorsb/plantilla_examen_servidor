@@ -3,7 +3,8 @@
  * Clase que extiende del EntityRepository donde podemos personalizar los métodos
  * que creamos necesitar añadiendo a los ya definidos por defecto.
  */
-namespace App\Repository;
+
+Namespace App\Repository;
 
 use App\Entity\Agent;
 use App\Core\EntityManager;

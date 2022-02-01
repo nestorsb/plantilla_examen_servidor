@@ -2,7 +2,7 @@
 /**
  * Clase que modela la Tabla Agent de la BB.DD. con Doctrine
  */
-namespace App\Entity;
+Namespace App\Entity;
 
 use App\Repository\AgentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -21,17 +21,17 @@ class Agent{
     private $id_agent;
 
     /**
-     * @ORM\Column(name="agent_name", type="string", unique="true", lenght="100")
+     * @ORM\Column(name="agent_name", type="string", unique="true", length=100)
      */
     private $agent_name;
 
     /**
-     * @ORM\Column(name="`password`", type="string", lenght="64")
+     * @ORM\Column(name="`password`", type="string", length=64)
      */
     private $password;
 
     /**
-     * @ORM\Column(name="faction", type="string", lenght="100")
+     * @ORM\Column(name="faction", type="string", length=100)
      */
     private $faction;
 

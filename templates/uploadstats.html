@@ -1,14 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h4>Subida de Estadisticas</h4>
+<h3>Subida de Estadisticas</h3>
+
+<h4>Agente: {{Agent.getAgent_Name}}</h4>
 
 <form action='' method='post'><label for='stats'>Pegue aquí las estadisticas: 
     <br> 
     <textarea name='stats' rows='10' cols='50'></textarea></label>
     <br>
-    <button type='submit' name='upload' value='upload'>Subir</button><br></form>
-
+    <button type='submit' name='upload' value='upload'>Subir</button><br>
     <br>
+    <label for='eventId'>Eventos</label>
+    <select name='eventId'>
+        <option selected value='none'>Las estadisticas no pertenecen a ningun evento</option>
+        {% for event in Events %}
+        <option value="{{event.getId_event()}}">{{event.getName()}}</option>
+        {% endfor %}
+     </select>
+    </form>
+     <br><br>
     <a href="/userprofile">Volver</a>
 {% endblock %}

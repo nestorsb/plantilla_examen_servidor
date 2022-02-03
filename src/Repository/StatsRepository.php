@@ -1,15 +1,22 @@
 <?php
+
 /**
  * Clase que extiende del EntityRepository donde podemos personalizar los métodos
  * que creamos necesitar añadiendo a los ya definidos por defecto.
  */
+
 namespace App\Repository;
 
 use App\Entity\Stats;
 use App\Core\EntityManager;
+use App\Entity\Agent;
+use App\Entity\Span;
+use App\Entity\Uploads;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Mapping\Id;
 
-class StatsRepository extends EntityRepository{
+class StatsRepository extends EntityRepository
+{
     //Aqui escribiremos nuestros métodos personalizados
 
     /**
@@ -24,4 +31,5 @@ class StatsRepository extends EntityRepository{
      * por ejemplo:findBySeer() para realizar una busqueda de una estadisticas
      */
 
+    
 }

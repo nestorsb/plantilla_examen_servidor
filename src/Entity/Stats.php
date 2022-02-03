@@ -107,7 +107,7 @@ class stats{
     /**
      * @ORM\Column(name="control_fields_created", type="integer", nullable="true")
      */
-    private $contolFieldsCreated;
+    private $controlFieldsCreated;
 
     /**
      * @ORM\Column(name="mind_units_captured", type="integer", nullable="true")
@@ -177,7 +177,7 @@ class stats{
     /**
      * @ORM\Column(name="portals_neutralized", type="integer", nullable="true")
      */
-    private $portalsNeutralizad;
+    private $portalsNeutralized;
 
     /**
      * @ORM\Column(name="enemy_links_destroyed", type="integer", nullable="true")
@@ -272,7 +272,7 @@ class stats{
     /**
      * @ORM\Column(name="months_subscribed", type="integer", nullable="true")
      */
-    private $mouthsSubscribed;
+    private $monthsSubscribed;
 
     /**
      * @ORM\Column(name="links_active", type="integer", nullable="true")
@@ -646,9 +646,9 @@ class stats{
      *
      * @return  self
      */ 
-    public function setContolFieldsCreated($contolFieldsCreated)
+    public function setControlFieldsCreated($controlFieldsCreated)
     {
-        $this->contolFieldsCreated = $contolFieldsCreated;
+        $this->controlFieldsCreated = $controlFieldsCreated;
 
         return $this;
     }
@@ -914,21 +914,21 @@ class stats{
     }
 
     /**
-     * Get the value of portalsNeutralizad
+     * Get the value of portalsNeutralized
      */ 
-    public function getPortalsNeutralizad()
+    public function getPortalsNeutralized()
     {
-        return $this->portalsNeutralizad;
+        return $this->portalsNeutralized;
     }
 
     /**
-     * Set the value of portalsNeutralizad
+     * Set the value of portalsNeutralized
      *
      * @return  self
      */ 
-    public function setPortalsNeutralizad($portalsNeutralizad)
+    public function setPortalsNeutralized($portalsNeutralized)
     {
-        $this->portalsNeutralizad = $portalsNeutralizad;
+        $this->portalsNeutralized = $portalsNeutralized;
 
         return $this;
     }
@@ -1296,9 +1296,9 @@ class stats{
     /**
      * Get the value of mouthsSubscribed
      */ 
-    public function getMouthsSubscribed()
+    public function getMonthsSubscribed()
     {
-        return $this->mouthsSubscribed;
+        return $this->monthsSubscribed;
     }
 
     /**
@@ -1306,9 +1306,9 @@ class stats{
      *
      * @return  self
      */ 
-    public function setMouthsSubscribed($mouthsSubscribed)
+    public function setMonthsSubscribed($monthsSubscribed)
     {
-        $this->mouthsSubscribed = $mouthsSubscribed;
+        $this->monthsSubscribed = $monthsSubscribed;
 
         return $this;
     }

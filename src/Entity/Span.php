@@ -21,7 +21,7 @@ class Span{
     private $id_span;
 
     /**
-     * @ORM\Column(name="time_span", type="string", unique="true", lenght="100")
+     * @ORM\Column(name="time_span", type="string", unique="true", length="100")
      */
     private $time_span;
 

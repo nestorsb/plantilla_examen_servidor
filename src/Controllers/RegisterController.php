@@ -25,6 +25,8 @@ class RegisterController extends AbstractController
 
       if ($agentRepository->doRegister($_POST["username"], $_POST["password"], $_POST["faction"])) {
         echo 'Registrado correctamente';
+      }else{
+        echo $agentRepository->getError_type()['msg'];
       }
     }
   }

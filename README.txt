@@ -16,7 +16,7 @@ La estructura de directorios es la siguiente:
 -Directorio Principal
         -config                 **Archivos de configuracion de la bbdd, enrutamiento y variables de sesión.
         -public => index.php    **Archivo público por el cual se accede y donde se inicia el servidor
-        -src                    **carpeta que contiene la logica de la aplicacion asi como la interaccion con la BBDD.
+        -src                    **carpeta que contiene la logica de la aplicacion asi como la interacción con la BBDD.
             +Controllers
             +Core
             +Entity
@@ -38,16 +38,26 @@ La aplicacion necesita:
         - Doctrine/annotations version ^1.13
 
 
-    !!##  COMANDOS necesarios para la puesta en funcionamiento ##!!
+    !!##  COMANDOS necesarios para la puesta en funcionamiento ##!!                     COMANDOS:
 
+    - Creamos una carpeta/directorio donde vayamos a guardar el proyecto
+    - Nos posicionamos en ese directorio y ejecutamos el comando:                       git clone https://github.com/nestorsb/AC5-Doctrine .
+    - Una vez clonado, nos posicionamos en el directorio /public con el comando:        cd public
+    - Iniciamos el servidor apache por el puuerto 8000 con el comando:                  php -S localhost:8000
+    - Ya podemos acceder a la aplicacion desde:                                         http://localhost:8000
 
+    - Recordamos que el servicio mysql debe de estar encendido en el panel de comandos de XAMPP
 
+     * Estos comandos son posibles porque la carpeta /vendor ya esta en el proyecto, si deseamos volver a crear esta carpeta o no la tenemos desde un inicio, habria que realizar los siguientes comandos antes que los anteriores:
+        - Nos posicionamos en el directorio principal del proyecto.
+        - Nos aseguramos que el archivo composer.json esta tal y como se encuentra en el proyecto en github.
+        - Con el siguiente comando creariamos la carpeta vendor con todo lo necesario:      composer install
 
 
 ********************* LINKS ***************************************************************************************************************************************************************
-Link a video explicativo:
+Link a video explicativo: https://youtu.be/dYE4A2mitr8
 
-Link a proyecto:
+Link a proyecto: https://github.com/nestorsb/AC5-Doctrine
 
 ********************* Observaciones *******************************************************************************************************************************************************
 

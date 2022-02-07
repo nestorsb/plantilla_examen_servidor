@@ -82,7 +82,7 @@ class AgentRepository extends EntityRepository
             return $agent->getId_agent();
         } else {
             $this->error_type['type'] = 3;
-            $this->error_type['type'] = "Ya existe un agente con este nombre";
+            $this->error_type['msg'] = "Ya existe un agente con este nombre";
             //echo "Existen agentes con ese nombre<br>";
             return 0;
         }

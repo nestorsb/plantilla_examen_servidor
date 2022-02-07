@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Lista de Participantes del Evento: {{event.getName()}}</h3>
+
+<table class="default" border="1">
+    <tr>
+        <th>Agente</th>
+    </tr>
+    {% for statEvent in statsEvent %}
+        <tr>
+            <td>{{statEvent.getAgent().getAgent_name()}}</td>
+        </tr>
+        {% endfor %}
+</table>
+
+<br>
+<a href="/eventlist">Atrás</a>
+{% endblock %}

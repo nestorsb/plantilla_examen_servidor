@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+{% if noData == true %}
+    <h2>No existen estadísticas de este evento</h2>
+{% else %}
+
+    <h3>Evolución en el Evento</h3>
+    
+    {% if loop.index > 1 %}
+        <br>
+    {% endif %}
+    
+    
+<table class="default" border="1">
+
+    <thead>
+  
+      <tr>
+    
+        <th colspan="10">{{event.getName}}</th>
+    
+      </tr>
+  
+      <tr>
+  
+        <th scope="col"></th>
+  
+        <th>Primera Estadistica</th>
+  
+        <th>Última Estadistica</th>
+
+        <th>Evolucion</th>
+  
+      </tr>
+  
+    </thead>
+  
+    <tbody>
+  
+      <tr>
+  
+        <th>Lifetime AP</th>
+  
+        <td>{{firstStats.getLifetimeAP}}</td>
+  
+        <td>{{lastStats.getLifetimeAP}}</td>
+  
+        <td>{{lastStats.getLifetimeAP - firstStats.getLifetimeAP}}</td>
+  
+      </tr>
+
+      <tr>
+  
+        <th>Unique Portals Visited</th>
+  
+        <td>{{firstStats.uniquePortalsVisited}}</td>
+  
+        <td>{{lastStats.uniquePortalsVisited}}</td>
+  
+        <td>{{lastStats.uniquePortalsVisited - firstStats.uniquePortalsVisited}}</td>
+  
+      </tr>
+
+      <tr>
+  
+        <th>Resonator Deployed</th>
+  
+        <td>{{firstStats.resonatorsDeployed}}</td>
+  
+        <td>{{lastStats.resonatorsDeployed}}</td>
+  
+        <td>{{lastStats.resonatorsDeployed - firstStats.resonatorsDeployed}}</td>
+  
+      </tr>
+
+      <tr>
+  
+        <th>Links Created</th>
+  
+        <td>{{firstStats.getLinksCreated}}</td>
+  
+        <td>{{lastStats.getLinksCreated}}</td>
+  
+        <td>{{lastStats.getLinksCreated - firstStats.getLinksCreated}}</td>
+  
+      </tr>
+
+      <tr>
+  
+        <th>Control Fields Created</th>
+  
+        <td>{{firstStats.getControlFields}}</td>
+  
+        <td>{{lastStats.getControlFields}}</td>
+  
+        <td>{{lastStats.getControlFields - firstStats.getControlFields}}</td>
+  
+      </tr>
+
+      <tr>
+  
+        <th>XM Recharched</th>
+  
+        <td>{{firstStats.getXmRecharged}}</td>
+  
+        <td>{{lastStats.getXmRecharged}}</td>
+  
+        <td>{{lastStats.getXmRecharged - firstStats.getXmRecharged}}</td>
+  
+      </tr>
+
+      <tr>
+  
+        <th>Portals Captured</th>
+  
+        <td>{{firstStats.getPortalsCaptured}}</td>
+  
+        <td>{{lastStats.getPortalsCaptured}}</td>
+  
+        <td>{{lastStats.getPortalsCaptured - firstStats.getPortalsCaptured}}</td>
+  
+      </tr>
+
+      <tr>
+  
+        <th>Hacks</th>
+  
+        <td>{{firstStats.getHacks}}</td>
+  
+        <td>{{lastStats.getHacks}}</td>
+  
+        <td>{{lastStats.getHacks - firstStats.getHacks}}</td>
+  
+      </tr>
+
+      <tr>
+  
+        <th>Resonators Destroyed</th>
+  
+        <td>{{firstStats.getResonatorsDestroyed}}</td>
+  
+        <td>{{lastStats.getResonatorsDestroyed}}</td>
+  
+        <td>{{lastStats.getResonatorsDestroyed - firstStats.getResonatorsDestroyed}}</td>
+  
+      </tr>
+
+    </tbody>
+
+    {% endif %}
+
+   <a href="/eventlist">Atrás</a>
+  
+{% endblock %}

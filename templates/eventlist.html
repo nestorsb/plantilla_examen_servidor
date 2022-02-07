@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Lista de Eventos</h3>
+
+
+<table class="default" border="1">
+    <tr>
+        <th>Nombre del Evento</th>
+        <th>Descripcion</th>
+        <th>Fecha</th>
+        <th>Lugar</th>
+        <th>Evolucion Personal</th>
+    </tr>
+    {% for event in events %}
+        <tr>
+            <td><a href="/eventparticipants/{{event.getId_event()}}">{{event.getName}}</a></td>
+            <td>{{event.getDescripcion}}</td>
+            <td>{{event.getDate.format('Y/m/d')}}</td>
+            <td>{{event.getPlace}}</td>
+            <td><a href="/eventevolution/{{event.getId_event()}}">Ver evolución</a></td>
+        </tr>
+        {% endfor %}
+</table>
+<br>
+<a href="/userprofile">Atrás</a>
+{% endblock %}

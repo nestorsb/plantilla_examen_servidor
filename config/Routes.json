@@ -18,5 +18,17 @@
     "/ranking":{
         "controller":"RankingController",
         "action":"showranking"
+    },
+    "/eventlist":{
+        "controller":"EventListController",
+        "action":"showeventlist"
+    },
+    "/eventparticipants":{
+        "controller":"EventParticipantsController",
+        "action":"showeventparticipants"
+    },
+    "/eventevolution":{
+        "controller":"EventEvolutionController",
+        "action": "showeventevolution"
     }
 }

@@ -3,8 +3,25 @@
         "controller": "MainController",
         "action": "main"
     },
-    "/ej": {
-        "controller": "ej",
-        "action": "ej"
+    "/listPedidos": {
+        "controller": "ListPedidosController",
+        "action": "listPedidos"
+    },
+    "/listFacturas": {
+        "controller": "ListFacturasController",
+        "action": "listFacturas"
+    },
+    "/listFacturasOfPedido": {
+        "controller": "ListFacturasOfPedidoController",
+        "action": "listFacturasOfPedido"
+    },
+    "/insert": {
+        "controller": "InsertController",
+        "action": "insert"
+    },
+    "/delete": {
+        "controller": "DeleteController",
+        "action": "delete"
     }
+    
 }

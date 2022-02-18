@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Tipo</th>
+        <th>Fecha</th>
+        <th>Empresa</th>
+        <th>Producto</th>
+        <th>Precio</th>
+    </tr>
+    {% for pedido in pedidos %}
+    <tr>
+        <td>{{pedido.getid}}</td>
+        <td>{{pedido.gettipo}}</td>
+        <td>{{pedido.getfecha.format('Y/m/d')}}</td>
+        <td><a href="/listFacturasOfPedido/{{pedido.getempresa}}">{{pedido.getempresa}}</a></td>
+        <td>{{pedido.getproducto}}</td>
+        <td>{{pedido.getprecio}}</td>
+        <td><a href="/delete/{{pedido.getid}}">Borrar</a></td>
+    </tr>
+    {% endfor %}
+</table>
+  
+{% endblock %}

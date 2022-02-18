@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Tipo</th>
+        <th>Fecha</th>
+        <th>Valor</th>
+
+    </tr>
+    {% for factura in facturas %}
+    <tr>
+        <td>{{factura.getid_factura}}</td>
+        <td>{{factura.gettipo}}</td>
+        <td>{{factura.getdate.format('Y/m/d')}}</td>
+        <td>{{factura.getvalor}}</td>
+    </tr>
+    {% endfor %}
+</table>
+  
+{% endblock %}
